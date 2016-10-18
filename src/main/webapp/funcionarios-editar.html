@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,
+maximum-scale=1, user-scalable=no">
+<title>Trabalho - Persistência com Frameworks</title>
+<script src="js/lib/angular.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css">
+<style type="text/css">
+input.ng-invalid {
+	border-color: #CD5C5C;
+}
+
+input.ng-valid {
+	border-color: #32CD32;
+}
+</style>
+</head>
+<body>
+	<div class="container" data-ng-app="app">
+		<div class="page-header">
+			<h3>Cadastro de Funcionário</h3>
+		</div>
+		<form id="form" name="form" class="form-horizontal"
+			data-ng-controller="funcionariosEditarCtrl"
+			data-ng-submit="form.$valid && salvar()" novalidate>
+			<input type="hidden" id="id" name="id" data-ng-model="funcionario.id" />
+			<div class="row">
+				<div class="col-md-12">
+					<div id="global-message" class="alert text-center" role="alert"
+						hidden></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group">
+					<label for="matricula" class="control-label col-md-2">Matrícula:</label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="matricula"
+							name="matricula" data-ng-model="funcionario.matricula"
+							placeholder="9" maxlength="6" title="Matrícula do funcionário"
+							required />
+					</div>
+					<span id="matricula-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				<div class="form-group">
+					<label for="nome" class="control-label col-md-2">Nome:</label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="nome" name="nome"
+							data-ng-model="funcionario.nome" placeholder="Nome completo"
+							maxlength="100" title="Nome do funcionário" required />
+					</div>
+					<span id="nome-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				<div class="form-group">
+					<label for="dataNascimento" class="control-label col-md-2">Data
+						de Nascimento:</label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="dataNascimento"
+							name="dataNascimento" data-ng-model="funcionario.dataNascimento"
+							placeholder="99/99/9999" maxlength="10"
+							title="Data de nascimento do funcionário" />
+					</div>
+					<span id="dataNascimento-message" class="text-danger col-md-4"
+						hidden></span>
+				</div>
+				<div class="form-group">
+					<label for="email" class="control-label col-md-2">E-mail:</label>
+					<div class="col-md-6">
+						<input type="email" class="form-control" id="email" name="email"
+							data-ng-model="funcionario.email" placeholder="nome@provedor.com"
+							maxlength="100" title="E-mail do funcionário" required />
+					</div>
+					<span id="email-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				<div class="form-group">
+					<label for="telefone" class="control-label col-md-2">Telefone:</label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="telefone"
+							name="telefone" data-ng-model="funcionario.telefone"
+							placeholder="(99) 99999-9999" maxlength="15"
+							title="Telefone do funcionário" />
+					</div>
+					<span id="telefone-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				<div class="form-group">
+					<label for="senha" class="control-label col-md-2">Senha:</label>
+					<div class="col-md-6">
+						<input type="password" class="form-control" id="senha"
+							name="senha" data-ng-model="funcionario.senha"
+							placeholder="999999" maxlength="10" title="Senha do funcionário"
+							required />
+					</div>
+					<span id="senha-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				<div class="form-group">
+					<label for="ativo" class="control-label col-md-2">Ativo:</label>
+					<div class="col-md-6">
+						<label class="radio-inline"><input type="radio" id="ativo"
+							name="ativo" data-ng-model="funcionario.ativo"
+							title="Funcionário está ativo?" data-ng-value="true" required>Sim</label>
+						<label class="radio-inline"><input type="radio" id="ativo"
+							name="ativo" data-ng-model="funcionario.ativo"
+							title="Funcionário está ativo?" data-ng-value="false" required>Não</label>
+					</div>
+					<span id="ativo-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				<br> <br>
+				<div class="form-group">
+					<label for="logradouro" class="control-label col-md-2">Logradouro:</label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="logradouro"
+							name="logradouro" data-ng-model="funcionario.endereco.logradouro"
+							placeholder="Rua ..." maxlength="100"
+							title="Logradouro do funcionário" required />
+					</div>
+					<span id="logradouro-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				<div class="form-group">
+					<label for="numero" class="control-label col-md-2">Número:</label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="numero" name="numero"
+							data-ng-model="funcionario.endereco.numero" placeholder="9999"
+							maxlength="5" title="Número do logradouro" required />
+					</div>
+					<span id="numero-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				<div class="form-group">
+					<label for="complemento" class="control-label col-md-2">Complemento:</label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="complemento"
+							name="complemento"
+							data-ng-model="funcionario.endereco.complemento"
+							placeholder="Próximo ao ..." maxlength="80"
+							title="Complemento do endereço" />
+					</div>
+					<span id="complemento-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				<div class="form-group">
+					<label for="bairro" class="control-label col-md-2">Bairro:</label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="bairro" name="bairro"
+							data-ng-model="funcionario.endereco.bairro"
+							placeholder="Nome do bairro" maxlength="60"
+							title="Nome do bairro" required />
+					</div>
+					<span id="bairro-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				<div class="form-group">
+					<label for="cep" class="control-label col-md-2">CEP:</label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="cep" name="cep"
+							data-ng-model="funcionario.endereco.cep" placeholder="99999999"
+							maxlength="8" title="Número do CEP" required />
+					</div>
+					<span id="cep-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				<br> <br>
+				<div class="form-group">
+					<label for="loja" class="control-label col-md-2">Loja:</label>
+					<div class="col-md-6">
+						<select class="form-control" id="loja" name="loja"
+							data-ng-model="funcionario.loja.id" title="Loja do funcionario"
+							required>
+							<option data-ng-repeat="loja in lojas" data-ng-value="loja.id"
+								data-ng-selected="funcionario.loja.id==loja.id">{{
+								loja.nome }}</option>
+						</select>
+					</div>
+					<span id="loja-message" class="text-danger col-md-4" hidden></span>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-2">
+					<a class="btn btn-primary" href="funcionarios-listar.html"> <span
+						class="glyphicon glyphicon-menu-left"></span> Voltar
+					</a> <input type="submit" id="salvar" name="salvar" value="Salvar"
+						class="btn btn-success" />
+					<button id="excluir" name="excluir" class="btn btn-danger"
+						type="button" data-ng-click="remover()"
+						data-ng-show="funcionario.id">
+						<span class="glyphicon glyphicon-remove"></span> Excluir
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script src="js/lib/jquery.js"></script>
+	<script src="js/lib/bootstrap.js"></script>
+	<script src="js/api/app.js"></script>
+	<script src="js/api/funcionarios-proxy.js"></script>
+	<script src="js/api/lojas-proxy.js"></script>
+	<script src="js/ctrl/utils-editar.js"></script>
+	<script src="js/ctrl/funcionarios-editar.js"></script>
+</body>
+</html>
