@@ -16,7 +16,7 @@ var FuncionarioProxy = {
 		return $http({
 			method : "POST",
 			url : this.url,
-			data : JSON.stringify(entidade),
+			data : removerHashKey(JSON.stringify(entidade)),
 			headers : {
 				'Content-Type' : 'application/json'
 			}
@@ -26,7 +26,7 @@ var FuncionarioProxy = {
 		return $http({
 			method : "PUT",
 			url : this.url + "/" + id,
-			data : JSON.stringify(entidade),
+			data : removerHashKey(JSON.stringify(entidade)),
 			headers : {
 				'Content-Type' : 'application/json'
 			}
@@ -39,3 +39,7 @@ var FuncionarioProxy = {
 		});
 	}
 };
+
+function removerHashKey(str) {
+	return str.replace(/,?\"\$\$hashKey\":\"\w+:\w+\"/i, "");
+}

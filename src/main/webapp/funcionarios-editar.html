@@ -161,11 +161,9 @@ input.ng-valid {
 					<label for="loja" class="control-label col-md-2">Loja:</label>
 					<div class="col-md-6">
 						<select class="form-control" id="loja" name="loja"
-							data-ng-model="funcionario.loja.id" title="Loja do funcionario"
+							data-ng-options="l.nome for l in lojas track by l.id"
+							data-ng-model="funcionario.loja" title="Loja do funcionario"
 							required>
-							<option data-ng-repeat="loja in lojas" data-ng-value="loja.id"
-								data-ng-selected="funcionario.loja.id==loja.id">{{
-								loja.nome }}</option>
 						</select>
 					</div>
 					<span id="loja-message" class="text-danger col-md-4" hidden></span>

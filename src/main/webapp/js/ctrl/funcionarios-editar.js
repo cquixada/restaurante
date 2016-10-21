@@ -28,12 +28,8 @@
 		id = $scope.funcionario.id;
 
 		limparMensagensErro();
-
-		LojaProxy.obterPorId($scope.funcionario.loja.id, $http).then(
-				function(response) {
-					$scope.funcionario.loja = response.data;
-					console.log(JSON.stringify($scope.funcionario.loja));
-				});
+		
+		console.log(JSON.stringify($scope.funcionario));
 
 		if (id) {
 			FuncionarioProxy.atualizar(id, $scope.funcionario, $http).then(
