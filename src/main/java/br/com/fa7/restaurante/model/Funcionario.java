@@ -20,7 +20,7 @@ public class Funcionario extends Usuario {
 	private Integer matricula;
 
 	@ManyToOne(cascade = { CascadeType.MERGE })
-	@JoinColumn(name = "id_loja")
+	@JoinColumn(name = "id_loja", nullable = false)
 	private Loja loja;
 
 	public Integer getMatricula() {

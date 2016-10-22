@@ -16,12 +16,21 @@
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
+
 		<property name="hibernate.current_session_context_class">thread</property>
+
+		<property name="hibernate.cache.use_query_cache">true</property>
+		<property name="hibernate.max_fetch_depth">2</property>
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</property>
 
 		<mapping class="br.com.fa7.restaurante.model.Usuario" />
 		<mapping class="br.com.fa7.restaurante.model.Funcionario" />
 		<mapping class="br.com.fa7.restaurante.model.Cliente" />
 		<mapping class="br.com.fa7.restaurante.model.Loja" />
+
+		<class-cache class="br.com.fa7.restaurante.model.Loja"
+			usage="read-only" />
 
 	</session-factory>
 

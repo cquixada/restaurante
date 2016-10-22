@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+
+	<diskStore path="java.io.tmpdir" />
+
+	<defaultCache maxElementsInMemory="100" eternal="false"
+		timeToIdleSeconds="60" timeToLiveSeconds="60" overflowToDisk="true" />
+
+	<cache name="br.com.fa7.restaurante.model.Loja"
+		maxElementsInMemory="100" eternal="false" timeToIdleSeconds="60"
+		timeToLiveSeconds="60" overflowToDisk="false" />
+
+	<!-- timeToIdleSeconds: tempo em segundos que um objeto pode permanecer 
+		inutilizado no cache. timeToLiveSeconds: tempo em segundos que um objeto 
+		pode ficar em cache. eternal: se configurado para "true", significa que o 
+		cache nunca vai expirar. -->
+
+</ehcache>
