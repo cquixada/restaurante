@@ -15,11 +15,11 @@ public class LojaBC {
 		return dao.listarTodos();
 	}
 
-	public Loja obterPorId(Long idLoja) throws UsuarioNaoEncontradoException {
+	public Loja obterPorId(Long idLoja) throws LojaNaoEncontradaException {
 		Loja loja = dao.obterPorId(idLoja);
 
 		if (loja == null) {
-			throw new UsuarioNaoEncontradoException();
+			throw new LojaNaoEncontradaException();
 		}
 
 		return loja;

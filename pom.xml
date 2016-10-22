@@ -19,16 +19,16 @@
 		<dependency>
 			<groupId>org.jboss.weld.se</groupId>
 			<artifactId>weld-se</artifactId>
-			<version>2.0.5.Final</version>
+			<version>2.4.0.Final</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<!-- Beans Validation -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.0.3.Final</version>
-			<scope>compile</scope>
+			<version>5.3.0.Final</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<!-- JAX-RS -->
@@ -39,15 +39,36 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Hibernate JPA -->
+		<!-- Hibernate EntityManager -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>3.5.6-Final</version>
+		</dependency>
+
+		<!-- Hibernate Annotations -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>3.5.6-Final</version>
+		</dependency>
+
+		<!-- PostgreSQL -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.4.1211</version>
+		</dependency>
+
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- @Transactional -->
+		<!-- JTA -->
 		<dependency>
 			<groupId>javax.transaction</groupId>
 			<artifactId>javax.transaction-api</artifactId>

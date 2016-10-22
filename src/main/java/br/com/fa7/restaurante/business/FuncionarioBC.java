@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -30,7 +29,6 @@ public class FuncionarioBC {
 		return funcionario;
 	}
 
-	@Transactional
 	public Long salvar(Funcionario funcionario) throws ValidacaoException {
 		validar(funcionario);
 
@@ -39,7 +37,6 @@ public class FuncionarioBC {
 		return funcionario.getId();
 	}
 
-	@Transactional
 	public Funcionario remover(Long idFuncionario) throws UsuarioNaoEncontradoException {
 		Funcionario funcionario = obterPorId(idFuncionario);
 

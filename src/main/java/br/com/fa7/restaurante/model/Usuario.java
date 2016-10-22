@@ -22,13 +22,12 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import br.com.fa7.restaurante.dao.BaseModel;
 import br.com.fa7.restaurante.util.DateAdapter;
 
 @Entity
 @Table(name = "usuarios")
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Usuario implements BaseModel {
+public abstract class Usuario extends BaseModel {
 	private static final long serialVersionUID = 2822605021060167039L;
 
 	@Id
@@ -74,7 +73,6 @@ public abstract class Usuario implements BaseModel {
 		super();
 	}
 
-	@Override
 	public Long getId() {
 		return id;
 	}

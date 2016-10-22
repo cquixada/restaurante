@@ -8,15 +8,6 @@ maximum-scale=1, user-scalable=no">
 <title>Trabalho - Persistência com Frameworks</title>
 <script src="js/lib/angular.min.js"></script>
 <link rel="stylesheet" href="css/bootstrap.css">
-<style type="text/css">
-input.ng-invalid {
-	border-color: #CD5C5C;
-}
-
-input.ng-valid {
-	border-color: #32CD32;
-}
-</style>
 </head>
 <body>
 	<div class="container" data-ng-app="app">
@@ -35,7 +26,7 @@ input.ng-valid {
 			</div>
 			<div class="row">
 				<div class="form-group">
-					<label for="matricula" class="control-label col-md-2">Matrícula:</label>
+					<label for="matricula" class="control-label col-md-2">Matrícula*:</label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" id="matricula"
 							name="matricula" data-ng-model="funcionario.matricula"
@@ -45,7 +36,7 @@ input.ng-valid {
 					<span id="matricula-message" class="text-danger col-md-4" hidden></span>
 				</div>
 				<div class="form-group">
-					<label for="nome" class="control-label col-md-2">Nome:</label>
+					<label for="nome" class="control-label col-md-2">Nome*:</label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" id="nome" name="nome"
 							data-ng-model="funcionario.nome" placeholder="Nome completo"
@@ -66,7 +57,7 @@ input.ng-valid {
 						hidden></span>
 				</div>
 				<div class="form-group">
-					<label for="email" class="control-label col-md-2">E-mail:</label>
+					<label for="email" class="control-label col-md-2">E-mail*:</label>
 					<div class="col-md-6">
 						<input type="email" class="form-control" id="email" name="email"
 							data-ng-model="funcionario.email" placeholder="nome@provedor.com"
@@ -85,7 +76,7 @@ input.ng-valid {
 					<span id="telefone-message" class="text-danger col-md-4" hidden></span>
 				</div>
 				<div class="form-group">
-					<label for="senha" class="control-label col-md-2">Senha:</label>
+					<label for="senha" class="control-label col-md-2">Senha*:</label>
 					<div class="col-md-6">
 						<input type="password" class="form-control" id="senha"
 							name="senha" data-ng-model="funcionario.senha"
@@ -95,7 +86,7 @@ input.ng-valid {
 					<span id="senha-message" class="text-danger col-md-4" hidden></span>
 				</div>
 				<div class="form-group">
-					<label for="ativo" class="control-label col-md-2">Ativo:</label>
+					<label for="ativo" class="control-label col-md-2">Ativo*:</label>
 					<div class="col-md-6">
 						<label class="radio-inline"><input type="radio" id="ativo"
 							name="ativo" data-ng-model="funcionario.ativo"
@@ -108,7 +99,7 @@ input.ng-valid {
 				</div>
 				<br> <br>
 				<div class="form-group">
-					<label for="logradouro" class="control-label col-md-2">Logradouro:</label>
+					<label for="logradouro" class="control-label col-md-2">Logradouro*:</label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" id="logradouro"
 							name="logradouro" data-ng-model="funcionario.endereco.logradouro"
@@ -118,7 +109,7 @@ input.ng-valid {
 					<span id="logradouro-message" class="text-danger col-md-4" hidden></span>
 				</div>
 				<div class="form-group">
-					<label for="numero" class="control-label col-md-2">Número:</label>
+					<label for="numero" class="control-label col-md-2">Número*:</label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" id="numero" name="numero"
 							data-ng-model="funcionario.endereco.numero" placeholder="9999"
@@ -138,7 +129,7 @@ input.ng-valid {
 					<span id="complemento-message" class="text-danger col-md-4" hidden></span>
 				</div>
 				<div class="form-group">
-					<label for="bairro" class="control-label col-md-2">Bairro:</label>
+					<label for="bairro" class="control-label col-md-2">Bairro*:</label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" id="bairro" name="bairro"
 							data-ng-model="funcionario.endereco.bairro"
@@ -148,7 +139,7 @@ input.ng-valid {
 					<span id="bairro-message" class="text-danger col-md-4" hidden></span>
 				</div>
 				<div class="form-group">
-					<label for="cep" class="control-label col-md-2">CEP:</label>
+					<label for="cep" class="control-label col-md-2">CEP*:</label>
 					<div class="col-md-6">
 						<input type="text" class="form-control" id="cep" name="cep"
 							data-ng-model="funcionario.endereco.cep" placeholder="99999999"
@@ -158,7 +149,7 @@ input.ng-valid {
 				</div>
 				<br> <br>
 				<div class="form-group">
-					<label for="loja" class="control-label col-md-2">Loja:</label>
+					<label for="loja" class="control-label col-md-2">Loja*:</label>
 					<div class="col-md-6">
 						<select class="form-control" id="loja" name="loja"
 							data-ng-options="l.nome for l in lojas track by l.id"

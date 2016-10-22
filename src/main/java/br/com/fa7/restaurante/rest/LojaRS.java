@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import br.com.fa7.restaurante.business.LojaBC;
-import br.com.fa7.restaurante.business.UsuarioNaoEncontradoException;
+import br.com.fa7.restaurante.business.LojaNaoEncontradaException;
 import br.com.fa7.restaurante.model.Loja;
 
 @Path("lojas")
@@ -32,7 +32,7 @@ public class LojaRS {
 		try {
 			return lojaBC.obterPorId(id);
 
-		} catch (UsuarioNaoEncontradoException e) {
+		} catch (LojaNaoEncontradaException e) {
 			throw new NotFoundException();
 		}
 	}

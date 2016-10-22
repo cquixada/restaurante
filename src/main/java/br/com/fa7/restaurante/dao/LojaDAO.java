@@ -4,7 +4,7 @@ import br.com.fa7.restaurante.model.Loja;
 
 public class LojaDAO extends GenericDAO<Loja> {
 
-	public LojaDAO() {
+	public LojaDAO() throws Exception {
 		super(Loja.class);
 	}
 }

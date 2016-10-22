@@ -11,11 +11,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import br.com.fa7.restaurante.dao.BaseModel;
-
 @Entity
 @Table(name = "lojas")
-public class Loja implements BaseModel {
+public class Loja extends BaseModel {
 	private static final long serialVersionUID = -6982852341809209178L;
 
 	@Id
