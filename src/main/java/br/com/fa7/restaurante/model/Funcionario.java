@@ -3,6 +3,7 @@ package br.com.fa7.restaurante.model;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -19,7 +20,7 @@ public class Funcionario extends Usuario {
 	@Basic(optional = false)
 	private Integer matricula;
 
-	@ManyToOne(cascade = { CascadeType.MERGE })
+	@ManyToOne(cascade = { CascadeType.MERGE }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_loja", nullable = false)
 	private Loja loja;
 
