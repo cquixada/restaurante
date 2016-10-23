@@ -26,11 +26,9 @@ public class Endereco {
 	@Basic(optional = false)
 	private Integer cep;
 
-	@NotNull
 	@Column(length = 60, nullable = true)
 	private String municipio;
 
-	@NotNull
 	@Basic(optional = true)
 	private Integer uf;
 
