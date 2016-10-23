@@ -16,7 +16,21 @@
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
+
 		<property name="hibernate.current_session_context_class">thread</property>
+
+		<property name="hibernate.cache.use_query_cache">true</property>
+		<property name="hibernate.max_fetch_depth">2</property>
+		<property name="hibernate.cache.use_second_level_cache">true</property>
+		<property name="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.EhCacheRegionFactory</property>
+
+		<property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+		<property name="hibernate.c3p0.min_size">5</property><!-- default: 1 -->
+		<property name="hibernate.c3p0.max_size">20</property><!-- default: 100 -->
+		<property name="hibernate.c3p0.timeout">300</property><!-- default: 0 (nunca expira) -->
+		<property name="hibernate.c3p0.max_statements">50</property><!-- default: 0 (não faz cache) -->
+		<property name="hibernate.c3p0.idle_test_period">1000</property><!-- default: 0 (não faz teste de 
+			conexões inativas) -->
 
 		<mapping class="br.com.fa7.restaurante.model.Usuario" />
 		<mapping class="br.com.fa7.restaurante.model.Funcionario" />
@@ -26,6 +40,9 @@
 		<mapping class="br.com.fa7.restaurante.model.Pedido" />
 		<mapping class="br.com.fa7.restaurante.model.Pagamento" />
 		<mapping class="br.com.fa7.restaurante.model.ItemPedido" />
+
+		<class-cache class="br.com.fa7.restaurante.model.Loja" usage="read-only" />
+
 	</session-factory>
 
 </hibernate-configuration>
