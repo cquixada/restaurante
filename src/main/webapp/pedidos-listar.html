@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Trabalho - Persistência com Frameworks</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h3>Listagem de Pedidos</h3>
+		</div>
+		<div class="row" data-ng-app="app" data-ng-controller="pedidosListarCtrl">
+			<div class="col-md-12">
+				<div class="table-responsive">
+					<table id="pedidos" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>Mesa</th>
+								<th>Descrição</th>
+								<th>Status Pedido</th>								
+								<th>Ações</th>
+
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr data-ng-repeat="pedido in pedidos">
+								<td>{{pedido.mesa}}</td>
+								<td>{{pedido.descricao}}</td>
+								<td>{{pedido.statusPedido}}</td>								
+								<td>
+									<a class="btn btn-default btn-block" href="#">
+										<span class="glyphicon glyphicon-pencil"></span> Editar
+									</a>
+									<a class="btn btn-default btn-block" href="#">
+										<span class="glyphicon glyphicon-pencil"></span> Cancelar
+									</a>
+									<a class="btn btn-default btn-block" href="#">
+										<span class="glyphicon glyphicon-pencil"></span> Pagar
+									</a>
+								</td>
+							</tr>
+						</tbody>
+
+						<tfoot>
+							<tr data-ng-show="pedidos.length == 0">
+								<td colspan="8">Nenhum registro encontrado!</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-4">
+				<a class="btn btn-primary" href="index.html"> 
+					<span class="glyphicon glyphicon-menu-left"></span> Voltar
+				</a> 
+				<a class="btn btn-warning" href="pedidos-editar.html"> 
+					<span class="glyphicon glyphicon-user"></span> Novo
+				</a>
+			</div>
+		</div>
+	</div>
+	<script src="js/lib/angular.min.js"></script>
+	<script src="js/lib/bootstrap.js"></script>
+	<script src="js/api/app.js"></script>
+	<script src="js/api/pedidos-proxy.js"></script>
+	<script src="js/ctrl/pedidos-listar.js"></script>
+</body>
+</html>

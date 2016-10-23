@@ -36,9 +36,12 @@
 		<mapping class="br.com.fa7.restaurante.model.Funcionario" />
 		<mapping class="br.com.fa7.restaurante.model.Cliente" />
 		<mapping class="br.com.fa7.restaurante.model.Loja" />
+		<mapping class="br.com.fa7.restaurante.model.EspecificacaoItem" />	
+		<mapping class="br.com.fa7.restaurante.model.Pedido" />
+		<mapping class="br.com.fa7.restaurante.model.Pagamento" />
+		<mapping class="br.com.fa7.restaurante.model.ItemPedido" />
 
-		<class-cache class="br.com.fa7.restaurante.model.Loja"
-			usage="read-only" />
+		<class-cache class="br.com.fa7.restaurante.model.Loja" usage="read-only" />
 
 	</session-factory>
 
