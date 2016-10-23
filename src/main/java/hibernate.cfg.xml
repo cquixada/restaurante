@@ -11,7 +11,7 @@
 		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/restaurante</property>
 		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
 		<property name="hibernate.connection.username">postgres</property>
-		<property name="hibernate.connection.password">pgadmin</property>
+		<property name="hibernate.connection.password">admin</property>
 
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
@@ -22,7 +22,10 @@
 		<mapping class="br.com.fa7.restaurante.model.Funcionario" />
 		<mapping class="br.com.fa7.restaurante.model.Cliente" />
 		<mapping class="br.com.fa7.restaurante.model.Loja" />
-
+		<mapping class="br.com.fa7.restaurante.model.EspecificacaoItem" />	
+		<mapping class="br.com.fa7.restaurante.model.Pedido" />
+		<mapping class="br.com.fa7.restaurante.model.Pagamento" />
+		<mapping class="br.com.fa7.restaurante.model.ItemPedido" />
 	</session-factory>
 
 </hibernate-configuration>
