@@ -1,6 +1,7 @@
 package br.com.fa7.restaurante.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -35,11 +37,7 @@ public class Pedido extends BaseModel{
 	@NotNull
 	@Size(min = 1, max = 100)
 	@Column(nullable = false)
-	private String descricao;
-	
-	@OneToOne(cascade = { CascadeType.MERGE })
-	@JoinColumn(name = "id_pagamento")
-	private Pagamento pagamento;
+	private String descricao;	
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status_pedido", nullable = false)
@@ -49,9 +47,8 @@ public class Pedido extends BaseModel{
 	@Column(nullable = false)
 	private Long mesa;
 	
-	@OneToOne(cascade = { CascadeType.MERGE })
-	@JoinColumn(name = "id_loja")
-	private Loja loja;
+	@Transient
+	private EspecificacaoItem[] itens;
 
 	public Long getId() {
 		return id;
@@ -76,14 +73,6 @@ public class Pedido extends BaseModel{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public Pagamento getPagamento() {
-		return pagamento;
-	}
-
-	public void setPagamento(Pagamento pagamento) {
-		this.pagamento = pagamento;
-	}
 	
 	public StatusPedido getStatusPedido() {
 		return statusPedido;
@@ -100,12 +89,12 @@ public class Pedido extends BaseModel{
 	public void setMesa(Long mesa) {
 		this.mesa = mesa;
 	}
-
-	public Loja getLoja() {
-		return loja;
+	
+	public EspecificacaoItem[] getItens() {
+		return itens;
 	}
 
-	public void setLoja(Loja loja) {
-		this.loja = loja;
+	public void setItens(EspecificacaoItem[] itens) {
+		this.itens = itens;
 	}
 }

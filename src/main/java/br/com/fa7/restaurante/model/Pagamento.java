@@ -1,10 +1,13 @@
 package br.com.fa7.restaurante.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -23,6 +26,10 @@ public class Pagamento extends BaseModel{
 	@NotNull
 	@Column(nullable = false)
 	private Double valor;
+	
+	@OneToOne(cascade = { CascadeType.MERGE })
+	@JoinColumn(name = "id_pedido")
+	private Pedido pedido;
 
 	public Long getId() {
 		return id;
@@ -38,5 +45,13 @@ public class Pagamento extends BaseModel{
 
 	public void setValor(Double valor) {
 		this.valor = valor;
+	}
+	
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 }

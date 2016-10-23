@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1,
+maximum-scale=1, user-scalable=no">
+<title>Trabalho - Persistência com Frameworks</title>
+<script src="js/lib/angular.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+	<div class="container" data-ng-app="app">
+		<div class="page-header">
+			<h3>Cadastro de Pedido</h3>
+		</div>
+		<form id="form" name="form" class="form-horizontal"
+			data-ng-controller="pedidosEditarCtrl"
+			data-ng-submit="form.$valid && salvar()" novalidate>
+			<input type="hidden" id="id" name="id" data-ng-model="pedido.id" />
+			<div class="row">
+				<div class="col-md-12">
+					<div id="global-message" class="alert text-center" role="alert" 	hidden></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group">
+					<label for="mesa" class="control-label col-md-2">Mesa*:</label>
+					<div class="col-md-6">
+						<input type="text" class="form-control" id="mesa" name="mesa" data-ng-model="pedido.mesa" placeholder="9" 
+							maxlength="6" title="Mesa do Pedido" required />
+					</div>
+					<span id="mesa-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				
+				<div class="form-group">
+					<label for="descricao" class="control-label col-md-2">Descrição*:</label>
+					<div class="col-md-6">
+						<textarea class="form-control" id="descricao" name="descricao" data-ng-model="pedido.descricao" 
+							placeholder="Descriçao do Pedido" maxlength="500" required></textarea>
+					</div>
+					<span id="descricao-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				
+				<div class="form-group">
+					<label for="produto" class="control-label col-md-2">Produtos*:</label>
+					<div data-ng-repeat="item in itens" >
+					  <label >
+					  	<input class="form-control" type="checkbox" id="produto" name="produto" data-ng-click="adicionarItens(item)"> {{item.nome}}
+		  		  	  </label>
+					</div>
+					<span id="descricao-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-2">
+					<a class="btn btn-primary" href="pedidos-listar.html"> 
+						<span class="glyphicon glyphicon-menu-left"></span> Voltar
+					</a> 
+					<input type="submit" id="salvar" name="salvar" value="Salvar" class="btn btn-success" />
+					<button id="excluir" name="excluir" class="btn btn-danger" type="button" data-ng-click="remover()" data-ng-show="pedido.id">
+						<span class="glyphicon glyphicon-remove"></span> Excluir
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script src="js/lib/jquery.js"></script>
+	<script src="js/lib/bootstrap.js"></script>
+	<script src="js/api/app.js"></script>
+	<script src="js/api/itens-proxy.js"></script>
+	<script src="js/ctrl/utils-editar.js"></script>
+	<script src="js/ctrl/pedidos-editar.js"></script>
+	<script src="js/api/pedidos-proxy.js"></script>
+</body>
+</html>
