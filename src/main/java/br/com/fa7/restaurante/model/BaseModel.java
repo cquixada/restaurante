@@ -8,7 +8,10 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @MappedSuperclass
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public abstract class BaseModel implements Serializable {
 	private static final long serialVersionUID = -3396602965804125292L;
 
