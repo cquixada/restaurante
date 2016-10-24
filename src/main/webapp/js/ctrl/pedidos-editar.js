@@ -8,6 +8,7 @@
 	});
 	
 	$scope.adicionarItens = function(item){
+		delete item.$$hashKey;
 		itensSelecionados.push(item);
 	}
 
@@ -33,7 +34,7 @@
 		id = $scope.pedido.id;
 
 		limparMensagensErro();
-		
+		$scope.pedido.itens = itensSelecionados;
 		console.log(JSON.stringify($scope.pedido));
 
 		if (id) {
@@ -43,8 +44,7 @@
 								"Funcionário atualizado com sucesso.").show();
 					}, tratarErro);
 
-		} else {
-			$scope.pedido.itens = itensSelecionados;
+		} else {			
 			PedidoProxy.inserir($scope.pedido, $http).then(
 					function(response) {
 						$scope.pedido.id = response.data;

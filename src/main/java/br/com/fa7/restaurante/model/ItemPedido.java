@@ -20,11 +20,11 @@ public class ItemPedido extends BaseModel{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "id_pedido")
 	private Pedido pedido;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "id_especificacao_item")
 	private EspecificacaoItem especificacaoItem;
 

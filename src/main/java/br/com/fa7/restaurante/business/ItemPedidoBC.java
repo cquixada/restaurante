@@ -45,6 +45,10 @@ public class ItemPedidoBC {
 
 		return pedido;
 	}
+	
+	public List<ItemPedido> getItensPedido(Long id) throws Exception{
+		return dao.getItensPedidos(id);
+	}
 
 	private void validar(ItemPedido Pedido) throws ValidacaoException {
 		Validator validator = Validation.buildDefaultValidatorFactory().getValidator();

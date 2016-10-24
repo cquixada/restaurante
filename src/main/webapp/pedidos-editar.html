@@ -42,14 +42,20 @@ maximum-scale=1, user-scalable=no">
 					<span id="descricao-message" class="text-danger col-md-4" hidden></span>
 				</div>
 				
-				<div class="form-group">
+				<div class="form-group" ng-if="pedido.id === undefined">
 					<label for="produto" class="control-label col-md-2">Produtos*:</label>
 					<div data-ng-repeat="item in itens" >
 					  <label >
-					  	<input class="form-control" type="checkbox" id="produto" name="produto" data-ng-click="adicionarItens(item)"> {{item.nome}}
+					  	<input type="checkbox" id="produto" name="produto" data-ng-click="adicionarItens(item)"> {{item.nome}}
 		  		  	  </label>
 					</div>
 					<span id="descricao-message" class="text-danger col-md-4" hidden></span>
+				</div>
+				<div class="form-group" ng-if="pedido.id !== undefined">
+					<label>Produtos*:</label>
+					<ul data-ng-repeat="item in pedido.itens" >
+					  <li>{{item.nome}}</li>
+					</ul>
 				</div>
 				
 			</div>
@@ -61,7 +67,7 @@ maximum-scale=1, user-scalable=no">
 					</a> 
 					<input type="submit" id="salvar" name="salvar" value="Salvar" class="btn btn-success" />
 					<button id="excluir" name="excluir" class="btn btn-danger" type="button" data-ng-click="remover()" data-ng-show="pedido.id">
-						<span class="glyphicon glyphicon-remove"></span> Excluir
+						<span class="glyphicon "></span> Excluir
 					</button>
 				</div>
 			</div>
