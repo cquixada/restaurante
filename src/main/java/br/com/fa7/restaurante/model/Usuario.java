@@ -66,7 +66,9 @@ public abstract class Usuario extends BaseModel {
 	@Basic(optional = false)
 	private Boolean ativo;
 
+	@NotNull
 	@Enumerated(EnumType.STRING)
+	@Basic(optional = false)
 	private PerfilUsuario perfilUsuario;
 
 	public Usuario() {
