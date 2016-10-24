@@ -49,16 +49,20 @@ public class PedidoRS {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Pedido obterPorId(@PathParam("id") Long id) {
 		try {
-			/*List<EspecificacaoItem> itens = new ArrayList<>();
-			itemPedidoBC.getItensPedidos(id).forEach(itemPedido ->{
+			List<EspecificacaoItem> itens = new ArrayList<>();
+			itemPedidoBC.getItensPedido(id).forEach(itemPedido ->{
 				itens.add(itemPedido.getEspecificacaoItem());
-			});*/
+			});
 			Pedido pedido = pedidoBC.obterPorId(id);
-			//pedido.setItens((EspecificacaoItem[]) itens.toArray());
+			EspecificacaoItem[] listaItens = itens.toArray(new EspecificacaoItem[0]);
+			pedido.setItens(listaItens);
 			return pedido;
 
 		} catch (UsuarioNaoEncontradoException e) {
 			throw new NotFoundException();
+		} catch (Exception e) {			
+			e.printStackTrace();
+			return null;
 		}
 	}
 
