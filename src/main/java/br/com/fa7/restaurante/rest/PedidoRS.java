@@ -1,5 +1,7 @@
 package br.com.fa7.restaurante.rest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -47,7 +49,13 @@ public class PedidoRS {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Pedido obterPorId(@PathParam("id") Long id) {
 		try {
-			return pedidoBC.obterPorId(id);
+			/*List<EspecificacaoItem> itens = new ArrayList<>();
+			itemPedidoBC.getItensPedidos(id).forEach(itemPedido ->{
+				itens.add(itemPedido.getEspecificacaoItem());
+			});*/
+			Pedido pedido = pedidoBC.obterPorId(id);
+			//pedido.setItens((EspecificacaoItem[]) itens.toArray());
+			return pedido;
 
 		} catch (UsuarioNaoEncontradoException e) {
 			throw new NotFoundException();
@@ -85,6 +93,15 @@ public class PedidoRS {
 	public Response atualizar(@PathParam("id") Long id, Pedido pedido) {
 		try {
 			pedido.setId(id);
+			pedido.setDataHora(new Date(Calendar.getInstance().getTimeInMillis()));
+			
+			for(EspecificacaoItem item : pedido.getItens()){
+				ItemPedido itemPedido = new ItemPedido();
+				itemPedido.setEspecificacaoItem(item);
+				itemPedido.setPedido(pedido);
+				itemPedido.setQuantidade(1);
+				itemPedidoBC.salvar(itemPedido);
+			}
 			pedidoBC.salvar(pedido);
 			return Response.status(Status.OK).entity(id).build();
 
@@ -98,6 +115,11 @@ public class PedidoRS {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response remover(@PathParam("id") Long id) {
 		try {
+			for(ItemPedido item : itemPedidoBC.listarTodos()){
+				if(item.getPedido().getId().longValue() == id.longValue()){
+					itemPedidoBC.remover(item.getId());
+				}
+			}
 			Pedido pedido = pedidoBC.remover(id);
 			return Response.status(Status.OK).entity(pedido).build();
 

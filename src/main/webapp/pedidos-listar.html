@@ -20,27 +20,17 @@
 								<th>Mesa</th>
 								<th>Descrição</th>
 								<th>Status Pedido</th>								
-								<th>Ações</th>
 
 							</tr>
 						</thead>
 
 						<tbody>
 							<tr data-ng-repeat="pedido in pedidos">
-								<td>{{pedido.mesa}}</td>
+								<td>									
+									<a href="pedidos-editar.html?id={{ pedido.id }}">{{pedido.mesa}}</a>
+								</td>
 								<td>{{pedido.descricao}}</td>
 								<td>{{pedido.statusPedido}}</td>								
-								<td>
-									<a class="btn btn-default btn-block" href="#">
-										<span class="glyphicon glyphicon-pencil"></span> Editar
-									</a>
-									<a class="btn btn-default btn-block" href="#">
-										<span class="glyphicon glyphicon-pencil"></span> Cancelar
-									</a>
-									<a class="btn btn-default btn-block" href="#">
-										<span class="glyphicon glyphicon-pencil"></span> Pagar
-									</a>
-								</td>
 							</tr>
 						</tbody>
 
