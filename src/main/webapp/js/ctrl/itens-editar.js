@@ -35,7 +35,8 @@
 
 		} else {
 			ItemProxy.inserir($scope.item, $http).then(
-					function(response) {console.log(JSON.stringify($scope.item));
+					function(response) {
+						console.log(JSON.stringify($scope.item));
 						$scope.item.id = response.data;
 
 						$("#global-message").addClass("alert-success").text(

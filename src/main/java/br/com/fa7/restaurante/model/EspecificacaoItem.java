@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "especificao_item")
-public class EspecificacaoItem extends BaseModel{
+public class EspecificacaoItem extends BaseModel {
 
 	private static final long serialVersionUID = -1847808194505694235L;
 
@@ -22,25 +22,25 @@ public class EspecificacaoItem extends BaseModel{
 	@SequenceGenerator(name = "sequence_items", sequenceName = "item_id_seq")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "sequence_items")
 	private Integer id;
-	
+
 	@NotNull
 	@Size(min = 1, max = 100)
 	@Column(length = 100, nullable = false)
 	private String nome;
-	
+
 	@NotNull
 	@Size(min = 1, max = 100)
 	@Column(length = 100, nullable = false)
 	private String descricao;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "categoria_item")
 	private CategoriaItem categoriaItem;
-	
+
 	@NotNull
 	@Column(nullable = false)
 	private Double preco;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -72,7 +72,7 @@ public class EspecificacaoItem extends BaseModel{
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
-	
+
 	public CategoriaItem getCategoriaItem() {
 		return categoriaItem;
 	}

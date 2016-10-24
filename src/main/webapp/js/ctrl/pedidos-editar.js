@@ -1,21 +1,21 @@
 ﻿app.controller('pedidosEditarCtrl', function($scope, $http) {
-	let itensSelecionados = [];
-	let id = obterParametroDaUrlPorNome('id');
+	let	itensSelecionados = [];
+	let	id = obterParametroDaUrlPorNome('id');
 
 	ItemProxy.listarTodos($http).then(function(response) {
 		$scope.itens = response.data;
 		console.log($scope.itens);
 	});
-	
-	$scope.adicionarItens = function(item){
-		delete item.$$hashKey;
-		itensSelecionados.push(item);
-	}
 
 	if (id) {
 		PedidoProxy.obterPorId(id, $http).then(function(response) {
 			$scope.pedido = response.data;
 		});
+	}
+	
+	$scope.adicionarItens = function(item) {
+		delete item.$$hashKey;
+		itensSelecionados.push(item);
 	}
 
 	$scope.remover = function() {
@@ -26,7 +26,7 @@
 					$scope.pedido = null;
 
 					$("#global-message").addClass("alert-success").text(
-							"Funcionário excluído com sucesso.").show();
+							"Pedido excluído com sucesso.").show();
 				});
 	}
 
@@ -34,23 +34,25 @@
 		id = $scope.pedido.id;
 
 		limparMensagensErro();
+
 		$scope.pedido.itens = itensSelecionados;
+
 		console.log(JSON.stringify($scope.pedido));
 
 		if (id) {
 			PedidoProxy.atualizar(id, $scope.pedido, $http).then(
 					function(response) {
 						$("#global-message").addClass("alert-success").text(
-								"Funcionário atualizado com sucesso.").show();
+								"Pedido atualizado com sucesso.").show();
 					}, tratarErro);
 
-		} else {			
+		} else {
 			PedidoProxy.inserir($scope.pedido, $http).then(
 					function(response) {
 						$scope.pedido.id = response.data;
 
 						$("#global-message").addClass("alert-success").text(
-								"Funcionário com id = " + response.data
+								"Pedido com id = " + response.data
 										+ " criado com sucesso.").show();
 					}, tratarErro);
 		}

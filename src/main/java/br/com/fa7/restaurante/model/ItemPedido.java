@@ -12,19 +12,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "item_pedido")
-public class ItemPedido extends BaseModel{
+public class ItemPedido extends BaseModel {
 
 	private static final long serialVersionUID = -8714461764979047731L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_pedido")
 	private Pedido pedido;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
+
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_especificacao_item")
 	private EspecificacaoItem especificacaoItem;
 
