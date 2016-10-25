@@ -9,6 +9,7 @@
 
 	if (id) {
 		PedidoProxy.obterPorId(id, $http).then(function(response) {
+			console.log(JSON.stringify($scope.pedido));
 			$scope.pedido = response.data;
 		});
 	}

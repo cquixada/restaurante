@@ -39,7 +39,7 @@ public class Pedido extends BaseModel {
 
 	@NotNull
 	@Basic(optional = false)
-	private Long mesa;
+	private Integer mesa;
 
 	@Transient
 	private EspecificacaoItem[] itens;
@@ -76,11 +76,11 @@ public class Pedido extends BaseModel {
 		this.statusPedido = statusPedido;
 	}
 
-	public Long getMesa() {
+	public Integer getMesa() {
 		return mesa;
 	}
 
-	public void setMesa(Long mesa) {
+	public void setMesa(Integer mesa) {
 		this.mesa = mesa;
 	}
 

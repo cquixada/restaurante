@@ -1,7 +1,7 @@
 package br.com.fa7.restaurante.model;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,20 +14,20 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pagamentos")
-public class Pagamento extends BaseModel{
+public class Pagamento extends BaseModel {
 
 	private static final long serialVersionUID = 4346970876913359019L;
-	
+
 	@Id
 	@SequenceGenerator(name = "sequence_pagamentos", sequenceName = "pagamento_id_seq")
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "sequence_pagamentos")
 	private Long id;
-	
+
 	@NotNull
-	@Column(nullable = false)
+	@Basic(optional = false)
 	private Double valor;
-	
-	@OneToOne(cascade = { CascadeType.MERGE })
+
+	@OneToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "id_pedido")
 	private Pedido pedido;
 
@@ -46,7 +46,7 @@ public class Pagamento extends BaseModel{
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-	
+
 	public Pedido getPedido() {
 		return pedido;
 	}

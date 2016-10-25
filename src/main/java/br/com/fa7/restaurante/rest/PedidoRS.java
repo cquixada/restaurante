@@ -1,8 +1,6 @@
 package br.com.fa7.restaurante.rest;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -20,9 +18,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import br.com.fa7.restaurante.business.ItemNaoEncontradoException;
 import br.com.fa7.restaurante.business.ItemPedidoBC;
 import br.com.fa7.restaurante.business.PedidoBC;
-import br.com.fa7.restaurante.business.UsuarioNaoEncontradoException;
+import br.com.fa7.restaurante.business.PedidoNaoEncontradoException;
 import br.com.fa7.restaurante.business.ValidacaoException;
 import br.com.fa7.restaurante.model.EspecificacaoItem;
 import br.com.fa7.restaurante.model.ItemPedido;
@@ -34,7 +33,7 @@ public class PedidoRS {
 
 	@Inject
 	private PedidoBC pedidoBC;
-	
+
 	@Inject
 	private ItemPedidoBC itemPedidoBC;
 
@@ -50,18 +49,24 @@ public class PedidoRS {
 	public Pedido obterPorId(@PathParam("id") Long id) {
 		try {
 			List<EspecificacaoItem> itens = new ArrayList<>();
-			itemPedidoBC.getItensPedido(id).forEach(itemPedido ->{
+			itemPedidoBC.getItensPedido(id).forEach(itemPedido -> {
 				itens.add(itemPedido.getEspecificacaoItem());
 			});
+
 			Pedido pedido = pedidoBC.obterPorId(id);
-			EspecificacaoItem[] listaItens = itens.toArray(new EspecificacaoItem[0]);
+
+			EspecificacaoItem[] listaItens = itens.toArray(new EspecificacaoItem[itens.size()]);
+
 			pedido.setItens(listaItens);
+
 			return pedido;
 
-		} catch (UsuarioNaoEncontradoException e) {
+		} catch (PedidoNaoEncontradoException e) {
 			throw new NotFoundException();
-		} catch (Exception e) {			
+
+		} catch (Exception e) {
 			e.printStackTrace();
+
 			return null;
 		}
 	}
@@ -71,18 +76,22 @@ public class PedidoRS {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response inserir(Pedido pedido) {
 		try {
-			pedido.setDataHora(new Date(Calendar.getInstance().getTimeInMillis()));
-			pedido.setStatusPedido(StatusPedido.Aberto);			
+			pedido.setDataHora(new Date());
+			pedido.setStatusPedido(StatusPedido.Aberto);
 
 			Long id = pedidoBC.salvar(pedido);
-			for(EspecificacaoItem item : pedido.getItens()){
+
+			for (EspecificacaoItem item : pedido.getItens()) {
 				ItemPedido itemPedido = new ItemPedido();
 				itemPedido.setEspecificacaoItem(item);
 				itemPedido.setPedido(pedido);
 				itemPedido.setQuantidade(1);
+
 				itemPedidoBC.salvar(itemPedido);
 			}
+
 			String url = "/api/pedidos/" + id;
+
 			return Response.status(Status.CREATED).header("Location", url).entity(id).build();
 
 		} catch (ValidacaoException e) {
@@ -97,16 +106,19 @@ public class PedidoRS {
 	public Response atualizar(@PathParam("id") Long id, Pedido pedido) {
 		try {
 			pedido.setId(id);
-			pedido.setDataHora(new Date(Calendar.getInstance().getTimeInMillis()));
-			
-			for(EspecificacaoItem item : pedido.getItens()){
+			pedido.setDataHora(new Date());
+
+			for (EspecificacaoItem item : pedido.getItens()) {
 				ItemPedido itemPedido = new ItemPedido();
 				itemPedido.setEspecificacaoItem(item);
 				itemPedido.setPedido(pedido);
 				itemPedido.setQuantidade(1);
+
 				itemPedidoBC.salvar(itemPedido);
 			}
+
 			pedidoBC.salvar(pedido);
+
 			return Response.status(Status.OK).entity(id).build();
 
 		} catch (ValidacaoException e) {
@@ -119,15 +131,17 @@ public class PedidoRS {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response remover(@PathParam("id") Long id) {
 		try {
-			for(ItemPedido item : itemPedidoBC.listarTodos()){
-				if(item.getPedido().getId().longValue() == id.longValue()){
+			for (ItemPedido item : itemPedidoBC.listarTodos()) {
+				if (item.getPedido().getId().equals(id)) {
 					itemPedidoBC.remover(item.getId());
 				}
 			}
+
 			Pedido pedido = pedidoBC.remover(id);
+
 			return Response.status(Status.OK).entity(pedido).build();
 
-		} catch (UsuarioNaoEncontradoException e) {
+		} catch (ItemNaoEncontradoException | PedidoNaoEncontradoException e) {
 			throw new NotFoundException();
 		}
 	}

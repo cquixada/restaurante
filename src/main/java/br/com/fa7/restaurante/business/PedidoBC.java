@@ -20,11 +20,11 @@ public class PedidoBC {
 		return dao.listarTodos();
 	}
 
-	public Pedido obterPorId(Long idPedido) throws UsuarioNaoEncontradoException {
+	public Pedido obterPorId(Long idPedido) throws PedidoNaoEncontradoException {
 		Pedido pedido = dao.obterPorId(idPedido);
 
 		if (pedido == null) {
-			throw new UsuarioNaoEncontradoException();
+			throw new PedidoNaoEncontradoException();
 		}
 
 		return pedido;
@@ -38,7 +38,7 @@ public class PedidoBC {
 		return pedido.getId();
 	}
 
-	public Pedido remover(Long idPedido) throws UsuarioNaoEncontradoException {
+	public Pedido remover(Long idPedido) throws PedidoNaoEncontradoException {
 		Pedido pedido = obterPorId(idPedido);
 
 		dao.remover(pedido);

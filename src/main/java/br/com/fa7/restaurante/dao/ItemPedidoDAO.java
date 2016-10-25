@@ -11,7 +11,7 @@ public class ItemPedidoDAO extends GenericDAO<ItemPedido> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<ItemPedido> getItensPedidos(Long idPedido) throws Exception {
+	public List<ItemPedido> getItensPedido(Long idPedido) throws Exception {
 		String consulta = "from ItemPedido i where i.pedido.id = :id";
 
 		return (List<ItemPedido>) super.session.createQuery(consulta).setParameter("id", idPedido).list();

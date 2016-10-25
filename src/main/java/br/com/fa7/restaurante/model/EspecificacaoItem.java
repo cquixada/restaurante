@@ -19,8 +19,8 @@ public class EspecificacaoItem extends BaseModel {
 	private static final long serialVersionUID = -1847808194505694235L;
 
 	@Id
-	@SequenceGenerator(name = "sequence_items", sequenceName = "item_id_seq")
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "sequence_items")
+	@SequenceGenerator(name = "sequence_espec_item", sequenceName = "espec_item_id_seq")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "sequence_espec_item")
 	private Integer id;
 
 	@NotNull

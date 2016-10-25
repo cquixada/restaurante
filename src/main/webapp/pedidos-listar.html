@@ -2,7 +2,8 @@
 <html lang="pt-br">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Trabalho - Persistência com Frameworks</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 </head>
@@ -11,7 +12,8 @@
 		<div class="page-header">
 			<h3>Listagem de Pedidos</h3>
 		</div>
-		<div class="row" data-ng-app="app" data-ng-controller="pedidosListarCtrl">
+		<div class="row" data-ng-app="app"
+			data-ng-controller="pedidosListarCtrl">
 			<div class="col-md-12">
 				<div class="table-responsive">
 					<table id="pedidos" class="table table-bordered table-striped">
@@ -19,24 +21,22 @@
 							<tr>
 								<th>Mesa</th>
 								<th>Descrição</th>
-								<th>Status Pedido</th>								
-
+								<th>Status do Pedido</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							<tr data-ng-repeat="pedido in pedidos">
-								<td>									
-									<a href="pedidos-editar.html?id={{ pedido.id }}">{{pedido.mesa}}</a>
+								<td><a href="pedidos-editar.html?id={{ pedido.id }}">{{pedido.mesa}}</a>
 								</td>
 								<td>{{pedido.descricao}}</td>
-								<td>{{pedido.statusPedido}}</td>								
+								<td>{{pedido.statusPedido}}</td>
 							</tr>
 						</tbody>
 
 						<tfoot>
 							<tr data-ng-show="pedidos.length == 0">
-								<td colspan="8">Nenhum registro encontrado!</td>
+								<td colspan="3">Nenhum registro encontrado!</td>
 							</tr>
 						</tfoot>
 					</table>
@@ -45,11 +45,10 @@
 		</div>
 		<div class="row">
 			<div class="col-md-8 col-md-offset-4">
-				<a class="btn btn-primary" href="index.html"> 
-					<span class="glyphicon glyphicon-menu-left"></span> Voltar
-				</a> 
-				<a class="btn btn-warning" href="pedidos-editar.html"> 
-					<span class="glyphicon glyphicon-user"></span> Novo
+				<a class="btn btn-primary" href="index.html"> <span
+					class="glyphicon glyphicon-menu-left"></span> Voltar
+				</a> <a class="btn btn-warning" href="pedidos-editar.html"> <span
+					class="glyphicon glyphicon-user"></span> Novo
 				</a>
 			</div>
 		</div>

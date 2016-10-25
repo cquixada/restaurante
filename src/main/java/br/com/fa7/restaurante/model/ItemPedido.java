@@ -1,6 +1,6 @@
 package br.com.fa7.restaurante.model;
 
-import javax.persistence.Column;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,7 +28,7 @@ public class ItemPedido extends BaseModel {
 	@JoinColumn(name = "id_especificacao_item")
 	private EspecificacaoItem especificacaoItem;
 
-	@Column(nullable = false)
+	@Basic(optional = false)
 	private Integer quantidade;
 
 	public Long getId() {

@@ -20,34 +20,34 @@ public class ItemPedidoBC {
 		return dao.listarTodos();
 	}
 
-	public ItemPedido obterPorId(Long idPedido) throws UsuarioNaoEncontradoException {
-		ItemPedido pedido = dao.obterPorId(idPedido);
+	public ItemPedido obterPorId(Long id) throws ItemNaoEncontradoException {
+		ItemPedido pedido = dao.obterPorId(id);
 
 		if (pedido == null) {
-			throw new UsuarioNaoEncontradoException();
+			throw new ItemNaoEncontradoException();
 		}
 
 		return pedido;
 	}
 
-	public Long salvar(ItemPedido pedido) throws ValidacaoException {
-		validar(pedido);
+	public Long salvar(ItemPedido itemPedido) throws ValidacaoException {
+		validar(itemPedido);
 
-		dao.salvar(pedido);
+		dao.salvar(itemPedido);
 
-		return pedido.getId();
+		return null;
 	}
 
-	public ItemPedido remover(Long idPedido) throws UsuarioNaoEncontradoException {
-		ItemPedido pedido = obterPorId(idPedido);
+	public ItemPedido remover(Long id) throws ItemNaoEncontradoException {
+		ItemPedido pedido = obterPorId(id);
 
 		dao.remover(pedido);
 
 		return pedido;
 	}
-	
-	public List<ItemPedido> getItensPedido(Long id) throws Exception{
-		return dao.getItensPedidos(id);
+
+	public List<ItemPedido> getItensPedido(Long idPedido) throws Exception {
+		return dao.getItensPedido(idPedido);
 	}
 
 	private void validar(ItemPedido Pedido) throws ValidacaoException {

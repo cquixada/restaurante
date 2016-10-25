@@ -40,26 +40,32 @@ maximum-scale=1, user-scalable=no">
 					<div class="col-md-6">
 						<textarea class="form-control" id="descricao" name="descricao"
 							data-ng-model="pedido.descricao"
-							placeholder="Descriçao do Pedido" maxlength="500" required></textarea>
+							placeholder="Descrição do Pedido" maxlength="500" required></textarea>
 					</div>
 					<span id="descricao-message" class="text-danger col-md-4" hidden></span>
 				</div>
 
-				<div class="form-group" ng-if="pedido.id === undefined">
+				<div class="form-group" data-ng-if="pedido.id === undefined">
 					<label for="produto" class="control-label col-md-2">Produtos*:</label>
-					<div data-ng-repeat="item in itens">
-						<label> <input type="checkbox" id="produto"
-							name="produto" data-ng-click="adicionarItens(item)">
-							{{item.nome}}
-						</label>
+					<div class="col-md-6">
+						<div class="checkbox" data-ng-repeat="item in itens">
+							<label> <input type="checkbox" id="produto"
+								name="produto" data-ng-click="adicionarItens(item)">
+								{{item.nome}}
+							</label>
+						</div>
 					</div>
-					<span id="descricao-message" class="text-danger col-md-4" hidden></span>
+					<span id="produto-message" class="text-danger col-md-4" hidden></span>
 				</div>
-				<div class="form-group" ng-if="pedido.id !== undefined">
-					<label>Produtos*:</label>
-					<ul data-ng-repeat="item in pedido.itens">
-						<li>{{item.nome}}</li>
-					</ul>
+
+				<div class="form-group" data-ng-if="pedido.id !== undefined">
+					<label class="control-label col-md-2">Produtos*:</label>
+					<div class="col-md-6">
+						<ul data-ng-repeat="item in pedido.itens">
+							<li>{{item.nome}}</li>
+						</ul>
+					</div>
+					<span class="col-md-4">&nbsp;</span>
 				</div>
 
 			</div>

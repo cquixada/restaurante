@@ -26,7 +26,7 @@ var PedidoProxy = {
 		return $http({
 			method : "PUT",
 			url : this.url + "/" + id,
-			data : entidade,
+			data : removerHashKey(JSON.stringify(entidade)),
 			headers : {
 				'Content-Type' : 'application/json'
 			}
