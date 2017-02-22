@@ -19,8 +19,8 @@ public class ItemBC {
 		return dao.listarTodos();
 	}
 
-	public EspecificacaoItem obterPorId(Integer idItem) throws ItemNaoEncontradoException {
-		EspecificacaoItem item = dao.obterPorId(idItem);
+	public EspecificacaoItem obterPorId(Integer id) throws ItemNaoEncontradoException {
+		EspecificacaoItem item = dao.obterPorId(id);
 
 		if (item == null) {
 			throw new ItemNaoEncontradoException();
@@ -37,8 +37,8 @@ public class ItemBC {
 		return item.getId();
 	}
 
-	public EspecificacaoItem remover(Integer idItem) throws ItemNaoEncontradoException {
-		EspecificacaoItem item = obterPorId(idItem);
+	public EspecificacaoItem remover(Integer id) throws ItemNaoEncontradoException {
+		EspecificacaoItem item = obterPorId(id);
 
 		dao.remover(item);
 

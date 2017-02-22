@@ -20,23 +20,28 @@
 						<thead>
 							<tr>
 								<th>Mesa</th>
-								<th>Descrição</th>
+								<th>Observação</th>
 								<th>Status do Pedido</th>
+								<th>Data do Pedido</th>
 							</tr>
 						</thead>
 
 						<tbody>
 							<tr data-ng-repeat="pedido in pedidos">
-								<td><a href="pedidos-editar.html?id={{ pedido.id }}">{{pedido.mesa}}</a>
+								<td><a href="pedidos-editar.html?id={{ pedido.id }}">{{pedido.controle}}</a>
 								</td>
-								<td>{{pedido.descricao}}</td>
+								<td>{{pedido.observacao}}</td>
 								<td>{{pedido.statusPedido}}</td>
+								<td><span data-ng-hide="pedido.dataAtualizacao">{{pedido.dataRegistro
+										| date:'dd/MM/yyyy HH:mm'}}</span><span
+									data-ng-show="pedido.dataAtualizacao">{{pedido.dataAtualizacao
+										| date:'dd/MM/yyyy HH:mm'}}</span></td>
 							</tr>
 						</tbody>
 
 						<tfoot>
 							<tr data-ng-show="pedidos.length == 0">
-								<td colspan="3">Nenhum registro encontrado!</td>
+								<td colspan="4">Nenhum registro encontrado!</td>
 							</tr>
 						</tfoot>
 					</table>
@@ -54,6 +59,7 @@
 		</div>
 	</div>
 	<script src="js/lib/angular.min.js"></script>
+	<script src="js/lib/jquery.js"></script>
 	<script src="js/lib/bootstrap.js"></script>
 	<script src="js/api/app.js"></script>
 	<script src="js/api/pedidos-proxy.js"></script>

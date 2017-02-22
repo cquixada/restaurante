@@ -50,7 +50,9 @@ public class FuncionarioRS {
 	public Response inserir(Funcionario body) {
 		try {
 			Long id = funcionarioBC.salvar(body);
+
 			String url = "/api/funcionarios/" + id;
+
 			return Response.status(Status.CREATED).header("Location", url).entity(id).build();
 
 		} catch (ValidacaoException e) {
@@ -65,7 +67,9 @@ public class FuncionarioRS {
 	public Response atualizar(@PathParam("id") Long id, Funcionario funcionario) {
 		try {
 			funcionario.setId(id);
+
 			funcionarioBC.salvar(funcionario);
+
 			return Response.status(Status.OK).entity(id).build();
 
 		} catch (ValidacaoException e) {
@@ -79,6 +83,7 @@ public class FuncionarioRS {
 	public Response remover(@PathParam("id") Long id) {
 		try {
 			Funcionario funcionario = funcionarioBC.remover(id);
+
 			return Response.status(Status.OK).entity(funcionario).build();
 
 		} catch (UsuarioNaoEncontradoException e) {

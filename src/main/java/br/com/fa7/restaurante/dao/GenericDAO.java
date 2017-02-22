@@ -5,10 +5,9 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import br.com.fa7.restaurante.model.BaseModel;
 import br.com.fa7.restaurante.util.HibernateFactory;
 
-public abstract class GenericDAO<T extends BaseModel> {
+public abstract class GenericDAO<T extends Serializable> {
 
 	protected final Session session;
 

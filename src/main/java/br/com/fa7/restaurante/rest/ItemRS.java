@@ -50,7 +50,9 @@ public class ItemRS {
 	public Response inserir(EspecificacaoItem body) {
 		try {
 			Integer id = itemBC.salvar(body);
+
 			String url = "/api/itens/" + id;
+
 			return Response.status(Status.CREATED).header("Location", url).entity(id).build();
 
 		} catch (ValidacaoException e) {
@@ -65,7 +67,9 @@ public class ItemRS {
 	public Response atualizar(@PathParam("id") Integer id, EspecificacaoItem item) {
 		try {
 			item.setId(id);
+
 			itemBC.salvar(item);
+
 			return Response.status(Status.OK).entity(id).build();
 
 		} catch (ValidacaoException e) {
@@ -79,10 +83,11 @@ public class ItemRS {
 	public Response remover(@PathParam("id") Integer id) {
 		try {
 			EspecificacaoItem item = itemBC.remover(id);
+
 			return Response.status(Status.OK).entity(item).build();
 
 		} catch (ItemNaoEncontradoException e) {
-			throw new NotFoundException();
+			throw new NotFoundException(e);
 		}
 	}
 

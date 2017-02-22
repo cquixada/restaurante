@@ -26,48 +26,45 @@ maximum-scale=1, user-scalable=no">
 			</div>
 			<div class="row">
 				<div class="form-group">
-					<label for="mesa" class="control-label col-md-2">Mesa*:</label>
+					<label for="controle" class="control-label col-md-2">Mesa*:</label>
 					<div class="col-md-6">
-						<input type="text" class="form-control" id="mesa" name="mesa"
-							data-ng-model="pedido.mesa" placeholder="9" maxlength="6"
-							title="Mesa do Pedido" required />
+						<input type="text" class="form-control" id="controle"
+							name="controle" data-ng-model="pedido.controle" placeholder="9"
+							maxlength="6" title="Mesa do Pedido" required />
 					</div>
-					<span id="mesa-message" class="text-danger col-md-4" hidden></span>
+					<span id="controle-message" class="text-danger col-md-4" hidden></span>
 				</div>
 
 				<div class="form-group">
-					<label for="descricao" class="control-label col-md-2">Descrição:</label>
+					<label for="observacao" class="control-label col-md-2">Observação:</label>
 					<div class="col-md-6">
-						<textarea class="form-control" id="descricao" name="descricao"
-							data-ng-model="pedido.descricao"
-							placeholder="Descrição do Pedido" maxlength="500" required></textarea>
+						<textarea class="form-control" id="observacao" name="observacao"
+							data-ng-model="pedido.observacao"
+							placeholder="Observação do Pedido" maxlength="500"></textarea>
 					</div>
-					<span id="descricao-message" class="text-danger col-md-4" hidden></span>
+					<span id="observacao-message" class="text-danger col-md-4" hidden></span>
 				</div>
 
-				<div class="form-group" data-ng-if="pedido.id === undefined">
+				<div class="form-group">
 					<label for="produto" class="control-label col-md-2">Produtos*:</label>
 					<div class="col-md-6">
-						<div class="checkbox" data-ng-repeat="item in itens">
-							<label> <input type="checkbox" id="produto"
-								name="produto" data-ng-click="adicionarItens(item)">
-								{{item.nome}}
-							</label>
+						<div class="checkbox" data-ng-repeat="item in itensCardapio">
+							<label title="{{item.especificacaoItem.descricao}}"> <input
+								type="checkbox" id="produto{{$index}}" name="produto{{$index}}"
+								data-ng-model="itensSelecionados"
+								data-ng-click="alternarItem(item)" data-ng-checked="item.id">
+								{{item.especificacaoItem.nome}} - <em>{{item.especificacaoItem.preco
+									| currency}}</em>
+							</label> <input type="number" id="quantidade{{$index}}"
+								name="quantidade{{$index}}" data-ng-model="item.quantidade"
+								placeholder="9" maxlength="3" title="Quantas unidades?"
+								data-ng-change="calcularTotal()" min="0">
 						</div>
+						<br /> <b>Total:</b> <em style="color: orange;">{{total |
+							currency}}</em>
 					</div>
 					<span id="produto-message" class="text-danger col-md-4" hidden></span>
 				</div>
-
-				<div class="form-group" data-ng-if="pedido.id !== undefined">
-					<label class="control-label col-md-2">Produtos*:</label>
-					<div class="col-md-6">
-						<ul data-ng-repeat="item in pedido.itens">
-							<li>{{item.nome}}</li>
-						</ul>
-					</div>
-					<span class="col-md-4">&nbsp;</span>
-				</div>
-
 			</div>
 			<br>
 			<div class="row">
@@ -88,9 +85,9 @@ maximum-scale=1, user-scalable=no">
 	<script src="js/lib/jquery.js"></script>
 	<script src="js/lib/bootstrap.js"></script>
 	<script src="js/api/app.js"></script>
-	<script src="js/api/itens-proxy.js"></script>
 	<script src="js/ctrl/utils-editar.js"></script>
-	<script src="js/ctrl/pedidos-editar.js"></script>
+	<script src="js/api/itens-proxy.js"></script>
 	<script src="js/api/pedidos-proxy.js"></script>
+	<script src="js/ctrl/pedidos-editar.js"></script>
 </body>
 </html>

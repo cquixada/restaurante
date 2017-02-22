@@ -16,19 +16,19 @@ public abstract class BaseModel implements Serializable {
 	private static final long serialVersionUID = -3396602965804125292L;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "data_criacao", nullable = true)
-	private Date dataCriacao;
+	@Column(name = "data_registro", nullable = false)
+	private Date dataRegistro;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data_atualizacao", nullable = true)
 	private Date dataAtualizacao;
 
-	public Date getDataCriacao() {
-		return dataCriacao;
+	public Date getDataRegistro() {
+		return dataRegistro;
 	}
 
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
+	public void setDataRegistro(Date dataRegistro) {
+		this.dataRegistro = dataRegistro;
 	}
 
 	public Date getDataAtualizacao() {

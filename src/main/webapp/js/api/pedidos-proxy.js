@@ -6,6 +6,12 @@ var PedidoProxy = {
 			url : this.url + "/" + id
 		});
 	},
+	obterItensPedido : function(id, $http) {
+		return $http({
+			method : "GET",
+			url : this.url + "/itensPedido/" + id
+		});
+	},
 	listarTodos : function($http) {
 		return $http({
 			method : "GET",
@@ -39,7 +45,3 @@ var PedidoProxy = {
 		});
 	}
 };
-
-function removerHashKey(str) {
-	return str.replace(/,?\"\$\$hashKey\":\"\w+:\w+\"/i, "");
-}

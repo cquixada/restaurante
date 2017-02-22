@@ -10,7 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import org.hibernate.Session;
-import org.hibernate.stat.Statistics;
 
 public class HibernateSessionFilter implements Filter {
 
@@ -26,15 +25,15 @@ public class HibernateSessionFilter implements Filter {
 
 		try {
 			session = HibernateFactory.getHibernateSession();
-			Statistics stat = HibernateFactory.getStatistics();
+//			Statistics stat = HibernateFactory.getStatistics();
 
 			session.beginTransaction();
 			chain.doFilter(request, response);
 			session.getTransaction().commit();
 
-			System.out.println("Inserções: " + stat.getEntityInsertCount() + "\nDeleções: "
-					+ stat.getEntityDeleteCount() + "\nAtualizações: " + stat.getEntityUpdateCount() + "\nLeituras: "
-					+ stat.getEntityLoadCount());
+//			System.out.println("Inserções: " + stat.getEntityInsertCount() + "\nDeleções: "
+//					+ stat.getEntityDeleteCount() + "\nAtualizações: " + stat.getEntityUpdateCount() + "\nLeituras: "
+//					+ stat.getEntityLoadCount());
 
 		} catch (Throwable e) {
 			if (session.getTransaction().isActive()) {

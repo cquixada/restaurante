@@ -30,12 +30,10 @@ public class ItemPedidoBC {
 		return pedido;
 	}
 
-	public Long salvar(ItemPedido itemPedido) throws ValidacaoException {
+	public void salvar(ItemPedido itemPedido) throws ValidacaoException {
 		validar(itemPedido);
 
 		dao.salvar(itemPedido);
-
-		return null;
 	}
 
 	public ItemPedido remover(Long id) throws ItemNaoEncontradoException {
@@ -46,7 +44,15 @@ public class ItemPedidoBC {
 		return pedido;
 	}
 
-	public List<ItemPedido> getItensPedido(Long idPedido) throws Exception {
+	public void removerDoPedido(Long idPedido) {
+		dao.removerDoPedido(idPedido);
+	}
+
+	public void removerDoPedidoExceto(Long idPedido, List<Long> itensAtuais) {
+		dao.removerDoPedidoExceto(idPedido, itensAtuais);
+	}
+
+	public List<ItemPedido> getItensPedido(Long idPedido) {
 		return dao.getItensPedido(idPedido);
 	}
 

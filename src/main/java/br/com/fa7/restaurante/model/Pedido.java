@@ -1,8 +1,9 @@
 package br.com.fa7.restaurante.model;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,9 +11,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -27,22 +28,18 @@ public class Pedido extends BaseModel {
 	private Long id;
 
 	@NotNull
-	@Column(name = "data_hora", nullable = false)
-	private Date dataHora;
+	@Basic(optional = true)
+	private Integer controle;
 
 	@Basic(optional = true)
-	private String descricao;
+	private String observacao;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status_pedido", nullable = false)
 	private StatusPedido statusPedido;
 
-	@NotNull
-	@Basic(optional = false)
-	private Integer mesa;
-
-	@Transient
-	private EspecificacaoItem[] itens;
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+	private List<ItemPedido> itensPedido;
 
 	public Long getId() {
 		return id;
@@ -52,20 +49,20 @@ public class Pedido extends BaseModel {
 		this.id = id;
 	}
 
-	public Date getDataHora() {
-		return dataHora;
+	public Integer getControle() {
+		return controle;
 	}
 
-	public void setDataHora(Date dataHora) {
-		this.dataHora = dataHora;
+	public void setControle(Integer controle) {
+		this.controle = controle;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getObservacao() {
+		return observacao;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
 	}
 
 	public StatusPedido getStatusPedido() {
@@ -76,19 +73,11 @@ public class Pedido extends BaseModel {
 		this.statusPedido = statusPedido;
 	}
 
-	public Integer getMesa() {
-		return mesa;
+	public List<ItemPedido> getItensPedido() {
+		return itensPedido;
 	}
 
-	public void setMesa(Integer mesa) {
-		this.mesa = mesa;
-	}
-
-	public EspecificacaoItem[] getItens() {
-		return itens;
-	}
-
-	public void setItens(EspecificacaoItem[] itens) {
-		this.itens = itens;
+	public void setItensPedido(List<ItemPedido> itensPedido) {
+		this.itensPedido = itensPedido;
 	}
 }

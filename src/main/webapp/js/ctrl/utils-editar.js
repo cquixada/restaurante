@@ -53,8 +53,12 @@ function obterParametroDaUrlPorNome(name) {
 }
 
 function limparMensagensErro() {
-	$("#global-message").removeClass("alert-danger alert-success").empty()
+	$("#global-message").removeClass("alert-success alert-info alert-warning alert-danger").empty()
 			.hide();
 	$(".text-danger").parent().removeClass("has-error");
 	$(".text-danger").hide();
+}
+
+function removerHashKey(str) {
+	return str.replace(/,?\"\$\$hashKey\":\"\w+:\w+\"/i, "");
 }

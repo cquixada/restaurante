@@ -25,7 +25,7 @@ public class AuditInterceptor extends EmptyInterceptor {
 
 	public boolean onSave(Object entity, Serializable id, Object[] state, String[] propertyNames, Type[] types) {
 		for (int i = 0; i < propertyNames.length; i++) {
-			if ("dataCriacao".equals(propertyNames[i])) {
+			if ("dataRegistro".equals(propertyNames[i])) {
 				state[i] = new Date();
 
 				return true;

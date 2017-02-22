@@ -1,8 +1,9 @@
 package br.com.fa7.restaurante.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,9 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "item_pedido")
-public class ItemPedido extends BaseModel {
+public class ItemPedido implements Serializable {
 
 	private static final long serialVersionUID = -8714461764979047731L;
 
@@ -20,11 +23,12 @@ public class ItemPedido extends BaseModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	@ManyToOne
 	@JoinColumn(name = "id_pedido")
 	private Pedido pedido;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "id_especificacao_item")
 	private EspecificacaoItem especificacaoItem;
 

@@ -39,7 +39,3 @@ var FuncionarioProxy = {
 		});
 	}
 };
-
-function removerHashKey(str) {
-	return str.replace(/,?\"\$\$hashKey\":\"\w+:\w+\"/i, "");
-}

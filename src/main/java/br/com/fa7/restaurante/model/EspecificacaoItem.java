@@ -1,5 +1,7 @@
 package br.com.fa7.restaurante.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -30,16 +32,16 @@ public class EspecificacaoItem extends BaseModel {
 
 	@NotNull
 	@Size(min = 1, max = 100)
-	@Column(length = 100, nullable = false)
+	@Column(length = 100, nullable = true)
 	private String descricao;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "categoria_item")
+	@Column(name = "categoria_item", nullable = false)
 	private CategoriaItem categoriaItem;
 
 	@NotNull
 	@Column(nullable = false)
-	private Double preco;
+	private BigDecimal preco;
 
 	public Integer getId() {
 		return id;
@@ -65,19 +67,19 @@ public class EspecificacaoItem extends BaseModel {
 		this.descricao = descricao;
 	}
 
-	public Double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(Double preco) {
-		this.preco = preco;
-	}
-
 	public CategoriaItem getCategoriaItem() {
 		return categoriaItem;
 	}
 
 	public void setCategoriaItem(CategoriaItem categoriaItem) {
 		this.categoriaItem = categoriaItem;
+	}
+
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
 	}
 }
